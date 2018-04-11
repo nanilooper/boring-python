@@ -8,10 +8,10 @@ import re,pyperclip
 text = pyperclip.paste()
 
 #regex for catching phone numbers
-phoneRegex = re.compile(r'''
+phoneRegex = re.compile(r'''(
                (\+?\d{2})?\s{,2}  #country_code
                ([987]\d{9})       #phonenum
-               ''',re.VERBOSE)
+               )''',re.VERBOSE)
 numbers = []
 for match in phoneRegex.findall(text):
     numbers.append(match[0]+match[1])
@@ -22,7 +22,7 @@ emailRegex = re.compile(r'''(
                         @                     #symbol
                         [a-zA-Z0-9._]+        #domain
                         (\.[a-zA-Z]{2,4})     #dot-something
-                          )''',re.VERBOSE)
+                         )''',re.VERBOSE)
 emails = []
 for groups in emailRegex.findall(text):
     emails.append(groups[0])
